@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Specula - Projects - Arden Rasmussen</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/12011c1667.js"></script>
+  </head>
+  <body>
+    <nav class="nav-extended blue">
+      <div class="nav-wrapper blue">
+        <a href="/" class="brand-logo center">Arden Rasmussen</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="https://github.com/LuxAtrumStudio"><i class="fab fa-github"></i></a></li>
+        </ul>
+      </div>
+      <div class="nav-content blue">
+        <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="/about.html">About</a></li>
+                <li class="tab"><a href="/blog/">Blog</a></li>
+                <li class="tab"><a href="/papers/">Papers</a></li>
+                <li class="tab"><a href="/projects/" class='active'>Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="content" class="container"><h1 class="header blue-text">Specula</h1>
+<hr/>
+<p class="flow-text">This ray tracer implements the basis of a ray tracing rendering engine in C++.
+It is possible to render still images, or sequences of images. Multi threading
+has also been implemented allowing for significantly faster render times.</p>
+
+<p class="flow-text">The ability to create multiple object of <em>sphere</em>, <em>triangle</em>, <em>plane</em>,
+<em>circle</em>, or <em>mesh</em> types is currently available. Where a mesh is any
+collection of triangles specified by an <code>*.stl</code> file. Thus allowing for the
+import of any arbitrary model. Using these five different supported objects,
+there is the possibility for the construction of all three dimensional models.</p>
+
+<p class="flow-text">The implementation of different materials is such that the reflectively of the
+material, the specular index, and the diffuse and specular colors can be
+determined. Using these settings it is possible to demonstrate most opaque
+materials.</p>
+
+<p class="flow-text">There are three formats of lights implemented in the system. <em>Distant</em> lights
+are lights that cast parallel rays across the entire space. They are useful for
+simulations of sunlight, or large sources of light that are very far away.
+<em>Point</em> lights approximate point sources. <em>Area</em> lights represent a light
+source from a rectangle. This is useful for most light sources, as very few
+sources of light are actual point sources, and can be better represented by
+this area light source. Every light can have have a specified intensity and
+color. And area light sources can specify the number of samples for calculating
+the lighting. Higher number of samples improves the quality of soft shadows
+produced in the final image.</p>
+
+<p class="flow-text"><video class="responsive-video" controls loop><source src="/imgs/specula_2.mp4" type="video/mp4"></video></p>
+
+<p class="flow-text">The entire process is self enclosed, as the process of compilation also
+compiles and links <code>libpng</code> in order to output <code>png</code> files.</p>
+
+<p class="flow-text">The multi threading is optimized by scattering the pixels that each thread
+renders, so that no single thread is solely rendering a simple set of pixels.
+This proves a significantly faster rendering time. Thus allowing for the
+rendering of significantly more complex systems.</p>
+
+</div>
+    <div id="footer"></div>
+  </body>
+</html>
