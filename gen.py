@@ -4,18 +4,62 @@ import jinja2
 import os
 import json
 import yaml
-import markdown2
+import markdown
 import datetime
 import shutil
 import re
 
 from pprint import pprint
 
+MARKDOWN_EXTENSIONS = [
+    'admonition', 'pymdownx.arithmatex', 'pymdownx.extra', 'pymdownx.highlight',
+    'pymdownx.inlinehilite'
+]
+
+
+def gen_tabs(block):
+    if block.strip().startswith('<p><img'):
+        block = block[4:-5].split('\n')
+        return '<div class="carousel">{}</div>'.format('\n'.join([
+            '<a class="carousel-item" href="#{}!">{}</a>'.format(i, img.replace('class="responsive-img"', ''))
+            for i, img in enumerate(block)
+        ]))
+    else:
+        block = [(x.strip()[3:] if x.strip().startswith('<p>') else
+                  (x.strip()[:-4] if x.strip().endswith('</p>') else x.strip()))
+                 for x in block.split('</p>\n<p>')]
+        data = {
+            v.split('\n')[0].strip():
+            '<p>{}</p>'.format('\n'.join(v.split('\n')[1:])) for v in block
+        }
+        tabs = [
+            '<li class="tab col s3"><a href="#{}" class="blue-text">{}</a></li>'
+            .format(x.lower(), x) for x in data.keys()
+        ]
+        divs = [
+            '<div id="{}" class="col s12">{}</div>'.format(k.lower(), v)
+            for k, v in data.items()
+        ]
+        return '<div class="row container"><div class="col s12"><ul class="tabs">{}</ul></div>{}</div>'.format(
+            '\n'.join(tabs), '\n'.join(divs))
+
 
 def apply_classes(html):
-    html = re.sub('<img src="([^\.]*\.mp4)"( *alt="([^"]*)")?( *title="([^"]*)")? */>', '<video class="responsive-video" controls \g<3>><source src="/\g<1>" type="video/mp4"></video>', html)
-    html = html.replace('<p>', '<p class="flow-text">').replace(
-        '<img ', '<img class="responsie-img" ')
+    html = html.replace('<img ', '<img class="responsive-img" ')
+    if '<p>%%%</p>' in html:
+        matches = re.findall('<p>%%%</p>(.*?)<p>%%%</p>', html, flags=re.DOTALL)
+        for match in matches:
+            html = re.sub('<p>%%%</p>(.*?)<p>%%%</p>',
+                          'TAB_BLOCK_DATA',
+                          html,
+                          count=1,
+                          flags=re.DOTALL)
+            html = html.replace('TAB_BLOCK_DATA', gen_tabs(match))
+    html = re.sub(
+        '<img ( *alt="([^"]*)")? *src="([^\.]*)\.mp4"( *title="([^"]*)")? */>',
+        '<video class="responsive-video" controls \g<2>><source src="/\g<3>.mp4" type="video/mp4"><source src="/\g<3>.webm" type="video/webm">Your browser does not support MP4 video.</video>',
+        html)
+    html = html.replace('<p>', '<p class="flow-text">')
     return html
 
 
@@ -34,17 +78,10 @@ def load_markdown(src, base, tab=None):
         source = source[[i for i, v in enumerate(source) if v == '---'][1] + 1:]
     source = '\n'.join(source)
     data['body'] = apply_classes(
-        markdown2.markdown(source,
-                           extras=[
-                               "code-friendly", "fenced-code-blocks",
-                               "header-ids", "tables", "smarty-pants"
-                           ]))
+        markdown.markdown(source, extensions=MARKDOWN_EXTENSIONS))
     data['preface'] = apply_classes(
-        markdown2.markdown(source.strip().split('\n\n')[0].strip(),
-                           extras=[
-                               "code-friendly", "fenced-code-blocks",
-                               "header-ids", "tables", "smarty-pants"
-                           ]))
+        markdown.markdown(source.strip().split('\n\n')[0].strip(),
+                          extensions=MARKDOWN_EXTENSIONS))
     if 'date' not in data:
         data['date'] = datetime.date.fromtimestamp(os.path.getmtime(src))
     if 'badges' not in data:
@@ -134,13 +171,20 @@ def main():
                              lstrip_blocks=True,
                              trim_blocks=True)
     data = load_data()
-    pprint(data)
     if not os.path.exists('docs'):
         os.mkdir('docs')
-    if os.path.exists('imgs'):
-        if os.path.exists('docs/imgs'):
-            shutil.rmtree('docs/imgs')
-        shutil.copytree('imgs', 'docs/imgs')
+    if os.path.exists('img'):
+        if os.path.exists('docs/img'):
+            shutil.rmtree('docs/img')
+        shutil.copytree('img', 'docs/img')
+    if os.path.exists('css'):
+        if os.path.exists('docs/css'):
+            shutil.rmtree('docs/css')
+        shutil.copytree('css', 'docs/css')
+    if os.path.exists('js'):
+        if os.path.exists('docs/js'):
+            shutil.rmtree('docs/js')
+        shutil.copytree('js', 'docs/js')
     for page in data['pages']:
         if data['pages'][page]['path'].endswith('.md'):
             render_page(env, data['pages'][page])

@@ -6,43 +6,50 @@
     <title>Specula - Projects - Arden Rasmussen</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
     <script src="https://kit.fontawesome.com/12011c1667.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/main.js"></script>
   </head>
   <body>
-    <nav class="nav-extended blue">
-      <div class="nav-wrapper blue">
-        <a href="/" class="brand-logo center">Arden Rasmussen</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="https://github.com/LuxAtrumStudio"><i class="fab fa-github"></i></a></li>
-        </ul>
-      </div>
-      <div class="nav-content blue">
-        <ul class="tabs tabs-transparent">
-                <li class="tab"><a href="/about.html">About</a></li>
-                <li class="tab"><a href="/blog/">Blog</a></li>
-                <li class="tab"><a href="/papers/">Papers</a></li>
-                <li class="tab"><a href="/projects/" class='active'>Projects</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div id="content" class="container"><h1 class="header blue-text">Specula</h1>
+    <header>
+      <nav class="nav-extended blue">
+        <div class="nav-wrapper blue">
+          <a href="/" class="brand-logo center">Arden Rasmussen</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="https://github.com/LuxAtrumStudio"><i class="fab fa-github"></i></a></li>
+          </ul>
+        </div>
+        <div class="nav-content blue">
+          <ul class="mtabs mtabs-transparent">
+                  <li class="mtab"><a href="/about.html">About</a></li>
+                  <li class="mtab"><a href="/blog/">Blog</a></li>
+                  <li class="mtab"><a href="/papers/">Papers</a></li>
+                  <li class="mtab"><a href="/projects/" class='active'>Projects</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Specula</h1>
+<div>
+  <a href=https://github.com/LuxAtrumStudio/specula><img alt="Github" src="https://img.shields.io/badge/Github-Specula-blue.svg?style=for-the-badge&logo=github"></a>
+  <a href=https://github.com/LuxAtrumStudio/specula><img alt="Github size" src="https://img.shields.io/github/repo-size/luxatrumstudio/Specula.svg?color=blue&style=for-the-badge&logo=github"></a>
+</div>
 <hr/>
 <p class="flow-text">This ray tracer implements the basis of a ray tracing rendering engine in C++.
 It is possible to render still images, or sequences of images. Multi threading
 has also been implemented allowing for significantly faster render times.</p>
-
 <p class="flow-text">The ability to create multiple object of <em>sphere</em>, <em>triangle</em>, <em>plane</em>,
 <em>circle</em>, or <em>mesh</em> types is currently available. Where a mesh is any
-collection of triangles specified by an <code>*.stl</code> file. Thus allowing for the
+collection of triangles specified by an <code>.stl</code> file. Thus allowing for the
 import of any arbitrary model. Using these five different supported objects,
 there is the possibility for the construction of all three dimensional models.</p>
-
 <p class="flow-text">The implementation of different materials is such that the reflectively of the
 material, the specular index, and the diffuse and specular colors can be
 determined. Using these settings it is possible to demonstrate most opaque
 materials.</p>
-
 <p class="flow-text">There are three formats of lights implemented in the system. <em>Distant</em> lights
 are lights that cast parallel rays across the entire space. They are useful for
 simulations of sunlight, or large sources of light that are very far away.
@@ -53,18 +60,46 @@ this area light source. Every light can have have a specified intensity and
 color. And area light sources can specify the number of samples for calculating
 the lighting. Higher number of samples improves the quality of soft shadows
 produced in the final image.</p>
-
-<p class="flow-text"><video class="responsive-video" controls loop><source src="/imgs/specula_2.mp4" type="video/mp4"></video></p>
-
+<p class="flow-text"><img class="responsive-img" alt="loop" src="img/specula_3.mp4" title="Rendered Animation" /></p>
 <p class="flow-text">The entire process is self enclosed, as the process of compilation also
 compiles and links <code>libpng</code> in order to output <code>png</code> files.</p>
-
 <p class="flow-text">The multi threading is optimized by scattering the pixels that each thread
 renders, so that no single thread is solely rendering a simple set of pixels.
 This proves a significantly faster rendering time. Thus allowing for the
 rendering of significantly more complex systems.</p>
-
+<p class="flow-text">Also does math work?</p>
+<div>
+<div class="MathJax_Preview">
+\frac{\pi}{2^{x}}
 </div>
-    <div id="footer"></div>
+<script type="math/tex; mode=display">
+\frac{\pi}{2^{x}}
+</script>
+</div>
+<p class="flow-text">I want to give the tabed code a try. Here we go!</p>
+<div class="row container"><div class="col s12"><ul class="tabs"><li class="tab col s3"><a href="#bash" class="blue-text">Bash</a></li>
+<li class="tab col s3"><a href="#c" class="blue-text">C</a></li></ul></div><div id="bash" class="col s12"><p class="flow-text"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&quot;HELLO WORLD!&quot;</span>
+</pre></div></p></div>
+<div id="c" class="col s12"><p class="flow-text"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;HELLO WORLD!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></p></div></div>
+<hr/>
+<div class="container">
+  <h3 class="header blue-text">Downloads</h3>
+    <a class="waves-effect waves-light btn-large blue" href="https://github.com/LuxAtrumStudio/Specula/archive/development.zip" download><i class="fas fa-file-download right"></i>Github</a>
+    <a class="waves-effect waves-light btn-large blue" href="https://github.com/LuxAtrumStudio/Specula/archive/development.zip" download><i class="fas fa-file-download right"></i>Images</a>
+    <a class="waves-effect waves-light btn-large blue" href="https://github.com/LuxAtrumStudio/Specula/archive/development.zip" download><i class="fas fa-file-download right"></i>Videos</a>
+</div>
+</main>
+    <footer class="page-footer blue">
+      <div class="footer-copyright">
+        <div class="container">
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

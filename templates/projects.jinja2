@@ -2,6 +2,26 @@
 {% block title %}{{ title }} - Projects - {{ website }}{% endblock %}
 {% block content %}
 <h1 class="header blue-text">{{ title }}</h1>
+<div>
+{% for badge in badges %}
+  {% if badge == 'github' %}
+  <a href={{ url }}><img alt="Github" src="https://img.shields.io/badge/Github-{{ title }}-blue.svg?style=for-the-badge&logo=github"></a>
+  {% elif badge == 'github-size' %}
+  <a href={{ url }}><img alt="Github size" src="https://img.shields.io/github/repo-size/luxatrumstudio/{{ title }}.svg?color=blue&style=for-the-badge&logo=github"></a>
+  {% else %}
+  <img src="{{ badge }}">
+  {% endif %}
+{% endfor %}
+</div>
 <hr/>
 {{ body }}
+{% if downloads is defined %}
+<hr/>
+<div class="container">
+  <h3 class="header blue-text">Downloads</h3>
+  {% for key, value in downloads.items() %}
+    <a class="waves-effect waves-light btn-large blue" href="{{ value }}" download><i class="fas fa-file-download right"></i>{{ key }}</a>
+  {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
