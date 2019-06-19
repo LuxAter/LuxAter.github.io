@@ -8,6 +8,7 @@ import markdown
 import datetime
 import shutil
 import re
+import subprocess
 
 from pprint import pprint
 
@@ -21,7 +22,8 @@ def gen_tabs(block):
     if block.strip().startswith('<p><img'):
         block = block[4:-5].split('\n')
         return '<div class="carousel">{}</div>'.format('\n'.join([
-            '<a class="carousel-item" href="#{}!">{}</a>'.format(i, img.replace('class="responsive-img"', ''))
+            '<a class="carousel-item" href="#{}!">{}</a>'.format(
+                i, img.replace('class="responsive-img"', ''))
             for i, img in enumerate(block)
         ]))
     else:
@@ -45,6 +47,10 @@ def gen_tabs(block):
 
 
 def apply_classes(html):
+    html = re.sub(
+        '<img ( *alt="([^"]*)")? *src="([^\.]*)\.mp4"( *title="([^"]*)")? */>',
+        '<video class="responsive-video" controls \g<2>><source src="/\g<3>.mp4" type="video/mp4"><source src="/\g<3>.webm" type="video/webm">Your browser does not support MP4 video.</video>',
+        html)
     html = html.replace('<img ', '<img class="responsive-img" ')
     if '<p>%%%</p>' in html:
         matches = re.findall('<p>%%%</p>(.*?)<p>%%%</p>', html, flags=re.DOTALL)
@@ -55,10 +61,6 @@ def apply_classes(html):
                           count=1,
                           flags=re.DOTALL)
             html = html.replace('TAB_BLOCK_DATA', gen_tabs(match))
-    html = re.sub(
-        '<img ( *alt="([^"]*)")? *src="([^\.]*)\.mp4"( *title="([^"]*)")? */>',
-        '<video class="responsive-video" controls \g<2>><source src="/\g<3>.mp4" type="video/mp4"><source src="/\g<3>.webm" type="video/webm">Your browser does not support MP4 video.</video>',
-        html)
     html = html.replace('<p>', '<p class="flow-text">')
     return html
 
@@ -177,6 +179,15 @@ def main():
         if os.path.exists('docs/img'):
             shutil.rmtree('docs/img')
         shutil.copytree('img', 'docs/img')
+        for r, d, f in os.walk('docs/img'):
+            print(f)
+            for file in f:
+                if file.endswith('.mp4'):
+                    subprocess.run([
+                        'ffmpeg', '-i', 'docs/img/' + file, '-c:v', 'libvpx', '-crf',
+                        '10', '-b:v', '1M', '-c:a', 'libvorbis',
+                        'docs/img/' + file.strip('.mp4') + '.webm'
+                    ])
     if os.path.exists('css'):
         if os.path.exists('docs/css'):
             shutil.rmtree('docs/css')
