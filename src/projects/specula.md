@@ -4,8 +4,6 @@ url: https://github.com/LuxAtrumStudio/specula
 img: /img/specula_1.png
 downloads:
     Github: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
-    Images: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
-    Videos: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
 ---
 
 This ray tracer implements the basis of a ray tracing rendering engine in C++.
@@ -34,7 +32,7 @@ color. And area light sources can specify the number of samples for calculating
 the lighting. Higher number of samples improves the quality of soft shadows
 produced in the final image.
 
-![loop](img/specula_3.mp4 "Rendered Animation")
+![loop](img/specula_2.mp4 "Rendered Animation")
 
 The entire process is self enclosed, as the process of compilation also
 compiles and links ``libpng`` in order to output ``png`` files.
@@ -43,30 +41,3 @@ The multi threading is optimized by scattering the pixels that each thread
 renders, so that no single thread is solely rendering a simple set of pixels.
 This proves a significantly faster rendering time. Thus allowing for the
 rendering of significantly more complex systems.
-
-Also does math work?
-
-$$
-\frac{\pi}{2^{x}}
-$$
-
-I want to give the tabed code a try. Here we go!
-
-%%%
-
-Bash
-```bash
-#!/bin/bash
-echo "HELLO WORLD!"
-```
-
-C
-```c
-#include <stdio>
-int main(void) {
-  printf("HELLO WORLD!\n");
-  return 0;
-}
-```
-
-%%%

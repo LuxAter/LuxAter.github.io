@@ -25,8 +25,7 @@ how each language fairs against a variety of problems.
 
 ## Problems ##
 
-The currently implemented problems from project Euler are problems one through
-ten.
+Each problem has its own dedicated page, with an explination of the logic.
 
 ## Languages ##
 

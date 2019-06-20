@@ -2,6 +2,7 @@
 
 import jinja2
 import os
+import sys
 import json
 import yaml
 import markdown
@@ -9,6 +10,10 @@ import datetime
 import shutil
 import re
 import subprocess
+import time
+
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 from pprint import pprint
 
@@ -23,7 +28,8 @@ def gen_tabs(block):
         block = block[4:-5].split('\n')
         return '<div class="carousel">{}</div>'.format('\n'.join([
             '<a class="carousel-item" href="#{}!">{}</a>'.format(
-                i, img.replace('class="responsive-img"', ''))
+                i, img.replace('class="responsive-img"',
+                               'class="materialboxed"'))
             for i, img in enumerate(block)
         ]))
     else:
@@ -51,7 +57,7 @@ def apply_classes(html):
         '<img ( *alt="([^"]*)")? *src="([^\.]*)\.mp4"( *title="([^"]*)")? */>',
         '<video class="responsive-video" controls \g<2>><source src="/\g<3>.mp4" type="video/mp4"><source src="/\g<3>.webm" type="video/webm">Your browser does not support MP4 video.</video>',
         html)
-    html = html.replace('<img ', '<img class="responsive-img" ')
+    html = html.replace('<img ', '<img class="responsive-img materialboxed" ')
     if '<p>%%%</p>' in html:
         matches = re.findall('<p>%%%</p>(.*?)<p>%%%</p>', html, flags=re.DOTALL)
         for match in matches:
@@ -167,8 +173,7 @@ def render_group(env, data):
     for entry in data['entries']:
         render_group_page(env, entry)
 
-
-def main():
+def generate(full):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates/'),
                              lstrip_blocks=True,
                              trim_blocks=True)
@@ -180,13 +185,14 @@ def main():
             shutil.rmtree('docs/img')
         shutil.copytree('img', 'docs/img')
         for r, d, f in os.walk('docs/img'):
-            print(f)
             for file in f:
-                if file.endswith('.mp4'):
+                if file.endswith('.mp4') and full:
                     subprocess.run([
-                        'ffmpeg', '-i', 'docs/img/' + file, '-c:v', 'libvpx', '-crf',
-                        '10', '-b:v', '1M', '-c:a', 'libvorbis',
-                        'docs/img/' + file.strip('.mp4') + '.webm'
+                        'ffmpeg', '-i',
+                        os.path.join(r, file), '-c:v', 'libvpx', '-crf', '10',
+                        '-b:v', '1M', '-c:a', 'libvorbis',
+                        os.path.join(r,
+                                     file.strip('.mp4') + '.webm')
                     ])
     if os.path.exists('css'):
         if os.path.exists('docs/css'):
@@ -201,6 +207,28 @@ def main():
             render_page(env, data['pages'][page])
         else:
             render_group(env, data['pages'][page])
+
+class MyHandler(FileSystemEventHandler):
+    def on_any_event(self, event):
+        generate(False)
+
+def main():
+    watcher = False
+    full = False
+    if 'full' in sys.argv or 'all' in sys.argv:
+        full = True
+    if 'serve' not in sys.argv:
+        generate(full)
+    else:
+        observer = Observer()
+        observer.schedule(MyHandler(), 'src/', recursive=True)
+        observer.start()
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            observer.stop()
+        observer.join()
 
 
 if __name__ == "__main__":
