@@ -43,6 +43,17 @@
       <span class="card-title">
         <h3 class="{{ primary }}-text">{{ entry.title }}</h3>
         <hr/>
+        {% if entry.tags is defined %}
+        <div>
+          {% for img, url in entry.tags.items() %}
+            {% if url != None %}
+              <a href={{ url }}><img alt="{{ img }}" src="{{ img }}"></a>
+            {% else %}
+              <img alt="{{ img }}" src="{{ img }}">
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
       </span>
       {{ entry.preface }}
     </div>
