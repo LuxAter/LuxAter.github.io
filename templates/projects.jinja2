@@ -2,17 +2,17 @@
 {% block title %}{{ title }} - Projects - {{ website }}{% endblock %}
 {% block content %}
 <h1 class="header blue-text">{{ title }}</h1>
+{% if tags is defined %}
 <div>
-{% for badge in badges %}
-  {% if badge == 'github' %}
-  <a href={{ url }}><img alt="Github" src="https://img.shields.io/badge/Github-{{ title }}-blue.svg?style=for-the-badge&logo=github"></a>
-  {% elif badge == 'github-size' %}
-  <a href={{ url }}><img alt="Github size" src="https://img.shields.io/github/repo-size/luxatrumstudio/{{ title }}.svg?color=blue&style=for-the-badge&logo=github"></a>
-  {% else %}
-  <img src="{{ badge }}">
-  {% endif %}
-{% endfor %}
+  {% for img, url in tags.items() %}
+    {% if url != None %}
+      <a href={{ url }}><img alt="{{ img }}" src="{{ img }}"></a>
+    {% else %}
+      <img alt="{{ img }}" src="{{ img }}">
+    {% endif %}
+  {% endfor %}
 </div>
+{% endif %}
 <hr/>
 {{ body }}
 {% if downloads is defined %}

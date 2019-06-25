@@ -20,28 +20,26 @@
       <nav class="nav-extended blue">
         <div class="nav-wrapper blue">
           <a href="/" class="brand-logo center">{{ website }}</a>
+          {% if icons is defined %}
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="https://github.com/LuxAtrumStudio"><i class="fab fa-github"></i></a></li>
+            {% for icon, url in icons.items() %}
+              {% if url != None %}
+                <li><a href="{{ url }}"><i class="{{ icon }}"></i></a></li>
+              {% else %}
+                <li><i class="{{ icon }}"></i></li>
+              {% endif %}
+            {% endfor %}
           </ul>
+          {% endif %}
         </div>
         {% if tabs is defined %}
         <div class="nav-content blue">
           <ul class="mtabs mtabs-transparent">
-            {% for itab in tabs %}
-              {% if itab != 'p:index' %}
-                {% if itab[0] == 'p' %}
-                  {% if itab == tab %}
-                  <li class="mtab"><a href="/{{ itab[2:].lower() }}.html" class='active'>{{ itab[2:].title() }}</a></li>
-                  {% else %}
-                  <li class="mtab"><a href="/{{ itab[2:].lower() }}.html">{{ itab[2:].title() }}</a></li>
-                  {% endif %}
-                {% else %}
-                  {% if itab == tab %}
-                  <li class="mtab"><a href="/{{ itab[2:].lower() }}/" class='active'>{{ itab[2:].title() }}</a></li>
-                  {% else %}
-                  <li class="mtab"><a href="/{{ itab[2:].lower() }}/">{{ itab[2:].title() }}</a></li>
-                  {% endif %}
-                {% endif %}
+            {% for k, v in tabs.items() %}
+              {% if tab == k %}
+                <li class="mtab"><a href="/{{ v }}" class="active">{{ k }}</a></li>
+              {% else %}
+                <li class="mtab"><a href="/{{ v }}">{{ k }}</a></li>
               {% endif %}
             {% endfor %}
           </ul>

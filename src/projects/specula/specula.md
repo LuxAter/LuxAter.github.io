@@ -1,7 +1,7 @@
 ---
 title: Specula
 url: https://github.com/LuxAtrumStudio/specula
-img: /img/specula_1.png
+img: specula_1.png
 downloads:
     Github: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
 ---
@@ -32,7 +32,7 @@ color. And area light sources can specify the number of samples for calculating
 the lighting. Higher number of samples improves the quality of soft shadows
 produced in the final image.
 
-![loop](img/specula_2.mp4 "Rendered Animation")
+![loop](specula_2.mp4 "Rendered Animation")
 
 The entire process is self enclosed, as the process of compilation also
 compiles and links ``libpng`` in order to output ``png`` files.
@@ -41,3 +41,22 @@ The multi threading is optimized by scattering the pixels that each thread
 renders, so that no single thread is solely rendering a simple set of pixels.
 This proves a significantly faster rendering time. Thus allowing for the
 rendering of significantly more complex systems.
+
+%%%
+
+Bash
+```bash
+echo "HELLO WORLD!"
+```
+
+C
+```c
+#include <iostream>
+
+void main(void) {
+  printf("hello world!");
+}
+```
+
+
+%%%

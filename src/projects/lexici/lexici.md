@@ -7,7 +7,7 @@ Lexici is a collection of problems implemented in a variety of different
 languages. The problems are sourced from [Project
 Euler](https://projecteuler.net/). Using this data set of programming languages
 constructed using the same algorithm for the same problems allows for
-interesting comparisons between the different languages. 
+interesting comparisons between the different languages.
 
 This can be used as a reference to compare implementation of the same algorithm
 across a number of different programming languages, allowing for better
@@ -26,6 +26,8 @@ how each language fairs against a variety of problems.
 ## Problems ##
 
 Each problem has its own dedicated page, with an explination of the logic.
+The problems can be found here
+[Problems](./lexici/)
 
 ## Languages ##
 
