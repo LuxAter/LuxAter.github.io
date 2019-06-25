@@ -258,9 +258,9 @@ def generate(full_gen=False):
         f for f in os.listdir('./templates')
         if os.path.isdir(os.path.join('./templates/', f))
     ]
-    # for d in dirs:
-    #     shutil.copytree(os.path.join('./templates/', d),
-    #                     os.path.join('./docs', d))
+    for d in dirs:
+        shutil.copytree(os.path.join('./templates/', d),
+                        os.path.join('./docs', d))
 
 
 def main():
