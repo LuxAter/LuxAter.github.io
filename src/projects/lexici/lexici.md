@@ -25,9 +25,13 @@ how each language fairs against a variety of problems.
 
 ## Problems ##
 
-Each problem has its own dedicated page, with an explination of the logic.
-The problems can be found here
-[Problems](./lexici/)
+<div class="progress">
+      <div class="blue determinate" style="width: 20%"></div>
+</div>
+The list of currently implemented problems can be found [here](lexici/). Each
+problem has the definition of the problem from Project Euler, and an
+explination of the solution. The explination is suplemented with the solution
+written in ``C``.
 
 ## Languages ##
 

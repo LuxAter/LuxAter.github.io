@@ -3,7 +3,7 @@ title: Specula
 url: https://github.com/LuxAtrumStudio/specula
 img: specula_1.png
 downloads:
-    Github: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
+  Github: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
 ---
 
 This ray tracer implements the basis of a ray tracing rendering engine in C++.
@@ -32,8 +32,6 @@ color. And area light sources can specify the number of samples for calculating
 the lighting. Higher number of samples improves the quality of soft shadows
 produced in the final image.
 
-![loop](specula_2.mp4 "Rendered Animation")
-
 The entire process is self enclosed, as the process of compilation also
 compiles and links ``libpng`` in order to output ``png`` files.
 
@@ -42,21 +40,7 @@ renders, so that no single thread is solely rendering a simple set of pixels.
 This proves a significantly faster rendering time. Thus allowing for the
 rendering of significantly more complex systems.
 
-%%%
+### Gallery ###
 
-Bash
-```bash
-echo "HELLO WORLD!"
-```
+![loop](specula_2.mp4 "Rendered Animation")
 
-C
-```c
-#include <iostream>
-
-void main(void) {
-  printf("hello world!");
-}
-```
-
-
-%%%
