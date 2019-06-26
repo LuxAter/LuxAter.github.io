@@ -6,7 +6,7 @@ class TabExtension(markdown.Extension):
     def __init__(self, configs):
         self.config = {
             'container':
-            '<div class="row container"><div class="col s12"><ul class="tabs">{}</ul></div>{}</div>',
+            '<div class="row"><div class="col s12"><ul class="tabs">{}</ul></div>{}</div>',
             'tab_container':
             '<li class="tab"><a href="#{}" class="{}">{}</a></li>',
             'block_container': '<div id="{}" class="col s12 {}">{}</div>',

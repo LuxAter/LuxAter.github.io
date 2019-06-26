@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>P1 - Projects - Arden Rasmussen</title>
+    <title>Multiples of 3 and 5 - Projects - Arden Rasmussen</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -22,22 +22,23 @@
                 <li><a href="https://git.ardenrasmussen.com"><i class="fab fa-github"></i></a></li>
           </ul>
         </div>
-        <div class="nav-content blue">
+        <div class="nav-content blue lighten-1">
           <ul class="mtabs mtabs-transparent">
                 <li class="mtab"><a href="/projects/" class="active">Projects</a></li>
           </ul>
         </div>
       </nav>
     </header>
-    <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">P1</h1>
+    <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Multiples of 3 and 5</h1>
 <div>
       <a href=https://projecteuler.net/problem=1><img alt="https://img.shields.io/badge/Euler-1-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-1-brightgreen.svg?style=for-the-badge"></a>
+      <img alt="https://img.shields.io/badge/Languages-16-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-16-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
-<p class="flow-text">If we list all the natural numbers below 10 that are multiples of 3 or 5, we
-get 3, 5, 6 and 9. The sum of these multiples is 23.  Find the sum of all the
-multiples of 3 or 5 below 1000.</p>
+<p class="flow-text">If we list all the natural numbers below <span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span> that are multiples of <span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span> or
+<span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span>, we get <span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span>, <span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span>, <span><span class="MathJax_Preview">6</span><script type="math/tex">6</script></span> and <span><span class="MathJax_Preview">9</span><script type="math/tex">9</script></span>. The sum of these multiples is <span><span class="MathJax_Preview">23</span><script type="math/tex">23</script></span>.  Find
+the sum of all the multiples of <span><span class="MathJax_Preview">3</span><script type="math/tex">3</script></span> or <span><span class="MathJax_Preview">5</span><script type="math/tex">5</script></span> below <span><span class="MathJax_Preview">1000</span><script type="math/tex">1000</script></span>.</p>
 </blockquote>
 <h3>Solution</h3>
 <p class="flow-text">A simple way to do this is to go through all numbers from 1 to 999 and test
@@ -64,7 +65,7 @@ p = t / n\\
 sum = n(p(p+1)) / 2
 </script>
 </div>
-<p class="flow-text">Then the final solution will have the persudo code of</p>
+<p class="flow-text">Then the final solution will have the pseudocode of
 <div class="highlight"><pre><span></span>target=999
 
 Function SumDivisibleBy(n)
@@ -73,10 +74,9 @@ Function SumDivisibleBy(n)
 EndFunction
 
 Output SumDivisibleBy(3)+SumDivisibleBy(5)-SumDivisibleBy(15)
-</pre></div>
-
+</pre></div></p>
 <h3>Code</h3>
-<p class="flow-text"><div class="row container"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#ada" class="blue-text">Ada</a></li>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#ada" class="blue-text">Ada</a></li>
 <li class="tab"><a href="#bash" class="blue-text">Bash</a></li>
 <li class="tab"><a href="#c/cpp" class="blue-text">C/Cpp</a></li>
 <li class="tab"><a href="#csharp" class="blue-text">CSharp</a></li>
@@ -201,19 +201,19 @@ SumDivisible<span class="o">()</span> <span class="o">{</span>
 <span class="kn">import</span> <span class="s">&quot;strconv&quot;</span>
 
 <span class="kd">func</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">p</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">max</span> <span class="o">/</span> <span class="nx">n</span>
-    <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+  <span class="kd">var</span> <span class="nx">p</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">max</span> <span class="o">/</span> <span class="nx">n</span>
+  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">max</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">999</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-            <span class="nx">max</span> <span class="p">=</span> <span class="nx">s</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">max</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">999</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+      <span class="nx">max</span> <span class="p">=</span> <span class="nx">s</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">sum</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">+</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">-</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">sum</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">+</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">-</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div></div>
 <div id="haskell" class="col s12 "><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nn">System.Environment</span>
@@ -356,6 +356,11 @@ SumDivisible<span class="o">()</span> <span class="o">{</span>
 <span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div></div></div></p>
+<hr/>
+<div class="container">
+  <h3 class="header blue-text">Downloads</h3>
+    <a class="waves-effect waves-light btn-large blue" href="https://projecteuler.net/overview=001" download><i class="fas fa-file-download right"></i>Overview</a>
+</div>
 </main>
     <footer class="page-footer blue">
       <div class="footer-copyright">

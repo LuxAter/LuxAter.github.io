@@ -7,6 +7,11 @@ import markdown
 import datetime
 import shutil
 import subprocess
+import sys
+import time
+
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
 import orto.video
 import orto.tab
@@ -151,6 +156,7 @@ def gen_markdown(env, data, dest_dir, base_name):
         lines = lines[[i for i, v in enumerate(lines) if v == '---'][1] + 1:]
     lines = markdown.markdown('\n'.join(lines), extensions=MARKDOWN_EXTENSIONS)
     data['dirname'] = dest_dir.lstrip('.')
+    data['filename'] = data['path'].split('/')[-1].strip('.md') + '.html'
     body_template = jinja2.Environment(
         loader=jinja2.BaseLoader).from_string(lines)
     lines = body_template.render(data)
@@ -160,6 +166,7 @@ def gen_markdown(env, data, dest_dir, base_name):
     else:
         dest = os.path.join(base_name, dest_dir,
                             data['path'].split('/')[-1].strip('.md') + '.html')
+    data['dest'] = dest
     template_src = None
     if 'template' in data and os.path.isfile('./templates/{}'.format(
             data['template'])):
@@ -192,6 +199,7 @@ def gen_markdown_str(data, dest_dir):
                                 extensions=MARKDOWN_EXTENSIONS).replace(
                                     '<p>', '<p class="flow-text">')
     data['dirname'] = dest_dir.lstrip('.')
+    data['filename'] = data['path'].split('/')[-1].strip('.md') + '.html'
     body_template = jinja2.Environment(
         loader=jinja2.BaseLoader).from_string(preface)
     preface = body_template.render(data)
@@ -208,19 +216,28 @@ def gen_file(env, data, dest_dir, base_name):
 def gen_tree_index(env, data, dest_dir, base_name):
     template = env.get_template('group.jinja2')
     dest = os.path.join(base_name, dest_dir, 'index.html')
-    data['entries'] = [{
-        'title': k,
-        **v
-    } for k, v in data['files'].items()
-                       if k.rstrip('.md') != data['path'].split('/')[-1]]
-    data['entries'] += [{
+    indexed = [
+        {
+            'title': k,
+            **v
+        } for k, v in data['files'].items()
+        if k.rstrip('.md') != data['path'].split('/')[-1] and 'index' in v
+    ]
+    dated = [
+        {
+            'title': k,
+            **v
+        } for k, v in data['files'].items()
+        if k.rstrip('.md') != data['path'].split('/')[-1] and 'index' not in v
+    ]
+    dated += [{
         'title': k,
         'subdir': True,
         **v['files'][k + '.md']
     } for k, v in data['dirs'].items() if k + '.md' in v['files']]
-    data['entries'] = sorted(data['entries'],
-                             key=lambda x: x['date'],
-                             reverse=True)
+    data['entries'] = sorted(indexed, key=lambda x: x['index'],
+                             reverse=False) + sorted(
+                                 dated, key=lambda x: x['date'], reverse=True)
     for entry in data['entries']:
         entry['preface'] = gen_markdown_str(entry, dest_dir)
     with open(dest, 'w') as output_file:
@@ -259,12 +276,34 @@ def generate(full_gen=False):
         if os.path.isdir(os.path.join('./templates/', f))
     ]
     for d in dirs:
+        if os.path.isdir(os.path.join('./docs', d)):
+            shutil.rmtree(os.path.join('./docs', d))
         shutil.copytree(os.path.join('./templates/', d),
                         os.path.join('./docs', d))
 
 
+class MyHandler(FileSystemEventHandler):
+    def on_any_event(self, event):
+        generate(False)
+
+
 def main():
-    generate()
+    watcher = False
+    full = False
+    if 'full' in sys.argv or 'all' in sys.argv:
+        full = True
+    if 'serve' not in sys.argv:
+        generate(full)
+    else:
+        observer = Observer()
+        observer.schedule(MyHandler(), 'src/', recursive=True)
+        observer.start()
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            observer.stop()
+        observer.join()
 
 
 if __name__ == "__main__":

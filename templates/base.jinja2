@@ -17,8 +17,8 @@
   </head>
   <body>
     <header>
-      <nav class="nav-extended blue">
-        <div class="nav-wrapper blue">
+      <nav class="nav-extended {{ primary }}">
+        <div class="nav-wrapper {{ primary }}">
           <a href="/" class="brand-logo center">{{ website }}</a>
           {% if icons is defined %}
           <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -33,7 +33,7 @@
           {% endif %}
         </div>
         {% if tabs is defined %}
-        <div class="nav-content blue">
+        <div class="nav-content {{ primary }} lighten-1">
           <ul class="mtabs mtabs-transparent">
             {% for k, v in tabs.items() %}
               {% if tab == k %}
@@ -48,7 +48,7 @@
       </nav>
     </header>
     <main id="content" class="container" style="padding-bottom:25px">{% block content %}{% endblock %}</main>
-    <footer class="page-footer blue">
+    <footer class="page-footer {{ primary }}">
     {% block footer %}
       <div class="footer-copyright">
         <div class="container">
