@@ -208,5 +208,9 @@ blockquote {
 }
 
 pre {
-  overflow: auto;
+  overflow-x: auto;
+}
+
+span.MJXc-display {
+  overflow-x: auto;
 }
