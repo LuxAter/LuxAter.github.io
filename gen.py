@@ -25,7 +25,7 @@ CONFIG = {
     'FFMPEG': bool(shutil.which('ffmpeg')),
     'PYGMENTS': bool(shutil.which('pygmentize')),
     'IMAGEMAGICK': bool(shutil.which('convert')),
-    'TRANSCRIBE': False
+    'TRANSCRIBE': True
 }
 
 
