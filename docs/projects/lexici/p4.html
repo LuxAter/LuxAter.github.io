@@ -32,7 +32,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Largest palindrome product</h1>
 <div>
       <a href=https://projecteuler.net/problem=4><img alt="https://img.shields.io/badge/Euler-4-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-4-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -41,6 +41,57 @@ from the product of two 2-digit numbers is <span><span class="MathJax_Preview">9
 largest palindrome made from the product of two 3-digit numbers.</p>
 </blockquote>
 <h3>Solution</h3>
+<h3>Code</h3>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">ReverseInteger</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">reversed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">reversed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">reversed</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">val</span> <span class="o">%</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">reversed</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">IsPalindrome</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="n">ReverseInteger</span><span class="p">(</span><span class="n">n</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">(</span><span class="n">max</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">tmp</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">largest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">count</span><span class="p">))</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">db</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">11</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span>
+      <span class="n">db</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="mi">11</span> <span class="o">*</span> <span class="p">(</span><span class="n">max</span> <span class="o">/</span> <span class="mi">11</span><span class="p">);</span>
+      <span class="n">db</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">largest</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">IsPalindrome</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">largest</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">b</span> <span class="o">-=</span> <span class="n">db</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">a</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">largest</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div></p>
 <hr/>
 <div class="container">
   <h3 class="header blue-text">Downloads</h3>

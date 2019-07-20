@@ -32,7 +32,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Sum square difference</h1>
 <div>
       <a href=https://projecteuler.net/problem=6><img alt="https://img.shields.io/badge/Euler-6-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-6-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -50,6 +50,22 @@ between the sum of the squares of the first one hundred natural numbers and
 the square of the sum.</p>
 </blockquote>
 <h3>Solution</h3>
+<h3>Code</h3>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">limit</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">*</span> <span class="p">(</span><span class="n">limit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">sum_sq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">limit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">limit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">limit</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">sum_sq</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">diff</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div></p>
 <hr/>
 <div class="container">
   <h3 class="header blue-text">Downloads</h3>

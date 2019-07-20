@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Longest Collatz sequence - Projects - Arden Rasmussen</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://kit.fontawesome.com/12011c1667.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="nav-extended blue">
+        <div class="nav-wrapper blue">
+          <a href="/" class="brand-logo center">Arden Rasmussen</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="https://git.ardenrasmussen.com"><i class="fab fa-github"></i></a></li>
+          </ul>
+        </div>
+        <div class="nav-content blue lighten-1">
+          <ul class="mtabs mtabs-transparent">
+                <li class="mtab"><a href="/projects/" class="active">Projects</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Longest Collatz sequence</h1>
+<div>
+      <a href=https://projecteuler.net/problem=14><img alt="https://img.shields.io/badge/Euler-14-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-14-brightgreen.svg?style=for-the-badge"></a>
+      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
+</div>
+<hr/>
+<blockquote>
+<p class="flow-text">The following iterative sequence is defined for the set of positive integers:
+$$
+n = \begin{cases}\frac{n}{2} &amp; \text{n is even} \\ 3n+1 &amp; \text{n is
+odd}\end{cases}
+$$</p>
+<p class="flow-text">Using the rule above and starting with <span><span class="MathJax_Preview">13</span><script type="math/tex">13</script></span>, we generate the following sequence:
+$$
+13 \rightarrow 40 \rightarrow 20 \rightarrow 10 \rightarrow 5 \rightarrow 16
+\rightarrow 8 \rightarrow 4 \rightarrow 2 \rightarrow 1
+$$
+It can be seen that this sequence (starting at <span><span class="MathJax_Preview">13</span><script type="math/tex">13</script></span> and finishing at <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>)
+contains <span><span class="MathJax_Preview">10</span><script type="math/tex">10</script></span> terms. Although it has not been proved yet (Collatz Problem),
+it is thought that all starting numbers finish at <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>.</p>
+<p class="flow-text">Which starting number, under one million, produces the longest chain?</p>
+</blockquote>
+<p class="flow-text"><strong>NOTE:</strong> Once the chain starts the terms are allowed to go above one million.</p>
+<h3>Solution</h3>
+<h3>Code</h3>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">values</span><span class="p">;</span>
+
+<span class="kt">unsigned</span> <span class="nf">count_chain</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="n">values</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count_chain</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">values</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">count_chain</span><span class="p">((</span><span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">maximum</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">longest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">maximum</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">maximum</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">chain_length</span> <span class="o">=</span> <span class="n">count_chain</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">chain_length</span> <span class="o">&gt;</span> <span class="n">longest</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">longest</span> <span class="o">=</span> <span class="n">chain_length</span><span class="p">;</span>
+      <span class="n">num</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div></p>
+<hr/>
+<div class="container">
+  <h3 class="header blue-text">Downloads</h3>
+    <a class="waves-effect waves-light btn-large blue" href="https://projecteuler.net/overview=014" download><i class="fas fa-file-download right"></i>Overview</a>
+</div>
+</main>
+    <footer class="page-footer blue">
+      <div class="footer-copyright">
+        <div class="container">
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

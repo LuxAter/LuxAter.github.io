@@ -32,7 +32,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Multiples of 3 and 5</h1>
 <div>
       <a href=https://projecteuler.net/problem=1><img alt="https://img.shields.io/badge/Euler-1-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-1-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-16-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-16-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -76,285 +76,22 @@ EndFunction
 Output SumDivisibleBy(3)+SumDivisibleBy(5)-SumDivisibleBy(15)
 </pre></div></p>
 <h3>Code</h3>
-<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#ada" class="blue-text">Ada</a></li>
-<li class="tab"><a href="#bash" class="blue-text">Bash</a></li>
-<li class="tab"><a href="#c/cpp" class="blue-text">C/Cpp</a></li>
-<li class="tab"><a href="#csharp" class="blue-text">CSharp</a></li>
-<li class="tab"><a href="#fortran" class="blue-text">Fortran</a></li>
-<li class="tab"><a href="#fsharp" class="blue-text">FSharp</a></li>
-<li class="tab"><a href="#go" class="blue-text">Go</a></li>
-<li class="tab"><a href="#haskell" class="blue-text">Haskell</a></li>
-<li class="tab"><a href="#javascript" class="blue-text">JavaScript</a></li>
-<li class="tab"><a href="#lua" class="blue-text">Lua</a></li>
-<li class="tab"><a href="#ocaml" class="blue-text">OCaml</a></li>
-<li class="tab"><a href="#perl" class="blue-text">Perl</a></li>
-<li class="tab"><a href="#python" class="blue-text">Python</a></li>
-<li class="tab"><a href="#r" class="blue-text">R</a></li>
-<li class="tab"><a href="#ruby" class="blue-text">Ruby</a></li>
-<li class="tab"><a href="#rust" class="blue-text">Rust</a></li></ul></div><div id="ada" class="col s12 "><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
-<span class="kn">with</span> <span class="nn">Ada.Integer_Text_IO</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Integer_Text_IO</span><span class="p">;</span>
-<span class="kn">with</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
-<span class="kd">procedure</span> <span class="nf">P1</span> <span class="kr">is</span>
-  <span class="kd">function</span> <span class="nf">SumDivisible</span> <span class="p">(</span> <span class="nv">n</span><span class="p">:I</span><span class="nv">nteger</span><span class="p">;</span> <span class="nv">max</span><span class="p">:I</span><span class="nv">nteger</span> <span class="p">)</span> <span class="kr">return</span> <span class="kt">Integer</span> <span class="kr">is</span>
-    <span class="n">p</span><span class="p">:</span> <span class="kt">Integer</span> <span class="p">:=</span> <span class="n">max</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
-    <span class="n">ret</span><span class="p">:</span> <span class="kt">Integer</span> <span class="p">:=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="kr">begin</span>
-    <span class="kr">return</span> <span class="n">ret</span><span class="p">;</span>
-  <span class="kr">end</span> <span class="nf">SumDivisible</span><span class="p">;</span>
-  <span class="n">max</span><span class="p">:</span> <span class="kt">Integer</span> <span class="p">:=</span> <span class="mi">999</span><span class="p">;</span>
-  <span class="n">val</span><span class="p">:</span> <span class="kt">Integer</span> <span class="p">:=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="kr">begin</span>
-  <span class="kr">if</span> <span class="n">Argument_Count</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="kr">then</span>
-    <span class="n">max</span> <span class="p">:=</span> <span class="kt">Integer</span><span class="p">&#39;</span><span class="na">Value</span><span class="p">(</span><span class="n">Argument</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="kr">end</span> <span class="kr">if</span><span class="p">;</span>
-  <span class="n">val</span> <span class="p">:=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
-  <span class="n">Put_Line</span><span class="p">(</span><span class="kt">Integer</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">(</span><span class="n">val</span><span class="p">));</span>
-<span class="kr">end</span> <span class="nf">P1</span><span class="p">;</span>
-</pre></div></div>
-<div id="bash" class="col s12 "><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-
-SumDivisible<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">let</span> <span class="nv">p</span><span class="o">=</span><span class="k">$((</span><span class="nv">$2</span> <span class="o">/</span> <span class="nv">$1</span><span class="k">))</span>
-  <span class="nb">echo</span> <span class="k">$((</span> <span class="k">$((</span> <span class="nv">$1</span> <span class="o">*</span> <span class="k">$((</span> <span class="nv">$p</span> <span class="o">*</span> <span class="k">$((</span> <span class="nv">$p</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))))))</span> <span class="o">/</span> <span class="m">2</span> <span class="k">))</span>
-<span class="o">}</span>
-
-<span class="nb">let</span> <span class="nv">limit</span><span class="o">=</span><span class="m">999</span>
-<span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-  <span class="nb">let</span> <span class="nv">limit</span><span class="o">=</span><span class="k">$((</span><span class="nv">$1</span> <span class="o">-</span> <span class="m">1</span><span class="k">))</span>
-<span class="k">fi</span>
-
-<span class="nb">let</span> <span class="nv">val</span><span class="o">=</span><span class="k">$((</span> <span class="k">$(</span>SumDivisible <span class="m">3</span> <span class="nv">$limit</span><span class="k">)</span> <span class="o">+</span> <span class="k">$(</span>SumDivisible <span class="m">5</span> <span class="nv">$limit</span><span class="k">)</span> <span class="o">-</span> <span class="k">$(</span>SumDivisible <span class="m">15</span> <span class="nv">$limit</span><span class="k">)))</span>
-<span class="nb">printf</span> <span class="s2">&quot;%d\n&quot;</span> <span class="nv">$val</span>
-</pre></div></div>
-<div id="c/cpp" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">)</span>
-<span class="p">{</span>
+<span class="kt">int</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">max</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
   <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">max</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div></div>
-<div id="csharp" class="col s12 "><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">P1</span><span class="p">{</span>
-  <span class="k">static</span> <span class="kt">int</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">p</span> <span class="p">=</span> <span class="n">max</span> <span class="p">/</span> <span class="n">n</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">n</span> <span class="p">*</span> <span class="p">(</span><span class="n">p</span> <span class="p">*</span> <span class="p">(</span><span class="n">p</span><span class="p">+</span><span class="m">1</span><span class="p">))</span> <span class="p">/</span> <span class="m">2</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
-    <span class="kt">int</span> <span class="n">max</span> <span class="p">=</span> <span class="m">999</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;=</span> <span class="m">1</span><span class="p">){</span>
-      <span class="n">max</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="m">0</span><span class="p">])</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">sum</span> <span class="p">=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="p">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="p">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="m">15</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
-    <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;{0}\n&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div></div>
-<div id="fortran" class="col s12 "><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">SumDivisible</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
-  <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">n</span>
-  <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="nb">max</span>
-<span class="nb">  </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">p</span>
-  <span class="n">p</span> <span class="o">=</span> <span class="nb">max</span> <span class="o">/</span> <span class="n">n</span>
-  <span class="n">p</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-  <span class="n">SumDivisible</span> <span class="o">=</span> <span class="n">p</span>
-<span class="k">end function </span><span class="n">SumDivisible</span>
-
-<span class="k">program </span><span class="n">p1</span>
-  <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">999</span>
-  <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">sum</span>
-<span class="nb">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">command_argument_count</span><span class="p">()</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">    call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-    <span class="k">read</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="nb">max</span>
-<span class="nb">  </span><span class="k">end if</span>
-<span class="k">  </span><span class="nb">sum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nb">max</span><span class="p">))</span>
-  <span class="k">print</span> <span class="o">*</span><span class="p">,</span> <span class="nb">sum</span>
-<span class="k">end program </span><span class="n">p1</span>
-</pre></div></div>
-<div id="fsharp" class="col s12 "><div class="highlight"><pre><span></span><span class="k">let</span> <span class="nv">SumDivisible</span> <span class="n">n</span> <span class="n">max</span> <span class="o">:</span> <span class="n">int</span> <span class="o">=</span>
-  <span class="k">let</span> <span class="nv">p</span> <span class="o">=</span> <span class="n">max</span> <span class="o">/</span> <span class="n">n</span>
-  <span class="n">n</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span> <span class="o">/</span> <span class="mi">2</span>
-
-<span class="o">[&lt;</span><span class="n">EntryPoint</span><span class="o">&gt;]</span>
-<span class="k">let</span> <span class="nv">main</span><span class="o">(</span><span class="n">argv</span><span class="o">)</span> <span class="o">=</span>
-  <span class="k">let</span> <span class="nv">max</span> <span class="o">=</span> <span class="k">if</span> <span class="o">(</span><span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="n">argv</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">then</span> <span class="n">argv</span><span class="o">.[</span><span class="mi">0</span><span class="o">]</span> <span class="o">|&gt;</span> <span class="n">int</span>
-            <span class="k">else</span> <span class="mi">999</span>
-  <span class="k">let</span> <span class="nv">sum</span> <span class="o">=</span> <span class="n">SumDivisible</span> <span class="mi">3</span> <span class="n">max</span> <span class="o">+</span> <span class="n">SumDivisible</span> <span class="mi">5</span> <span class="n">max</span> <span class="o">-</span> <span class="n">SumDivisible</span> <span class="mi">15</span> <span class="n">max</span>
-  <span class="n">printfn</span> <span class="s">&quot;%i&quot;</span> <span class="n">sum</span>
-  <span class="mi">0</span>
-</pre></div></div>
-<div id="go" class="col s12 "><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
-<span class="kn">import</span> <span class="s">&quot;os&quot;</span>
-<span class="kn">import</span> <span class="s">&quot;strconv&quot;</span>
-
-<span class="kd">func</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">p</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">max</span> <span class="o">/</span> <span class="nx">n</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">max</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">999</span>
-  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">1</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nx">Atoi</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-      <span class="nx">max</span> <span class="p">=</span> <span class="nx">s</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="kd">var</span> <span class="nx">sum</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">+</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">-</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
-  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v\n&quot;</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div></div>
-<div id="haskell" class="col s12 "><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nn">System.Environment</span>
-
-<span class="nf">main</span> <span class="ow">=</span> <span class="kr">do</span>
-  <span class="n">args</span> <span class="ow">&lt;-</span> <span class="n">getArgs</span>
-  <span class="n">print</span> <span class="p">(</span><span class="n">problem_1</span> <span class="p">(</span><span class="kr">if</span> <span class="n">null</span> <span class="n">args</span> <span class="kr">then</span> <span class="p">(</span><span class="mi">999</span><span class="p">)</span> <span class="kr">else</span> <span class="p">(</span><span class="n">read</span> <span class="o">$</span> <span class="n">head</span> <span class="n">args</span> <span class="ow">::</span> <span class="kt">Integer</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="nf">problem_1</span> <span class="n">max</span> <span class="ow">=</span> <span class="n">sumStep</span> <span class="mi">3</span> <span class="n">max</span> <span class="o">+</span> <span class="n">sumStep</span> <span class="mi">5</span> <span class="n">max</span> <span class="o">-</span> <span class="n">sumStep</span> <span class="mi">15</span> <span class="n">max</span>
-  <span class="kr">where</span>
-    <span class="n">sumStep</span> <span class="n">s</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">sumOnetoN</span> <span class="p">(</span><span class="n">n</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="n">s</span><span class="p">)</span>
-    <span class="n">sumOnetoN</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">2</span>
-</pre></div></div>
-<div id="javascript" class="col s12 "><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env node</span>
-
-<span class="kd">function</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">max</span><span class="p">){</span>
-  <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">max</span> <span class="o">/</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">n</span> <span class="o">*</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="p">(</span> <span class="nx">p</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">){</span>
-  <span class="nx">max</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">+</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="o">-</span> <span class="nx">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nx">max</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
-</pre></div></div>
-<div id="lua" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#!/usr/bin/lua</span>
-
-<span class="kr">function</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
-  <span class="kd">local</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">math.floor</span><span class="p">(</span><span class="n">max</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
-  <span class="kr">return</span> <span class="nb">math.floor</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-<span class="kr">end</span>
-
-<span class="kr">function</span> <span class="nf">TableLength</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-  <span class="kd">local</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="kr">for</span> <span class="n">_</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="kr">do</span> <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="kr">end</span>
-  <span class="kr">return</span> <span class="n">count</span>
-<span class="kr">end</span>
-
-<span class="n">max</span> <span class="o">=</span> <span class="mi">999</span>
-
-<span class="kr">if</span> <span class="p">(</span><span class="n">TableLength</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="kr">then</span>
-  <span class="n">max</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="kr">end</span>
-
-<span class="n">sum</span> <span class="o">=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span>
-</pre></div></div>
-<div id="ocaml" class="col s12 "><div class="highlight"><pre><span></span><span class="k">let</span> <span class="n">sumdivisible</span> <span class="n">a</span> <span class="n">max</span> <span class="o">=</span>
-  <span class="k">let</span> <span class="n">p</span> <span class="o">=</span> <span class="n">max</span> <span class="o">/</span> <span class="n">a</span> <span class="k">in</span>
-  <span class="n">a</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">))</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;;</span>
-
-<span class="k">let</span> <span class="bp">()</span> <span class="o">=</span>
-  <span class="k">let</span> <span class="n">max</span> <span class="o">=</span> <span class="k">if</span> <span class="nn">Array</span><span class="p">.</span><span class="n">length</span> <span class="nn">Sys</span><span class="p">.</span><span class="n">argv</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">then</span> <span class="o">(</span><span class="n">int_of_string</span> <span class="o">(</span><span class="nn">Array</span><span class="p">.</span><span class="n">get</span> <span class="nn">Sys</span><span class="p">.</span><span class="n">argv</span>
-    <span class="mi">1</span><span class="o">))</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">999</span> <span class="k">in</span>
-  <span class="k">let</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">sumdivisible</span> <span class="mi">3</span> <span class="n">max</span> <span class="o">+</span> <span class="n">sumdivisible</span> <span class="mi">5</span> <span class="n">max</span> <span class="o">-</span> <span class="n">sumdivisible</span> <span class="mi">15</span> <span class="n">max</span> <span class="k">in</span>
-  <span class="nn">Printf</span><span class="p">.</span><span class="n">printf</span> <span class="s2">&quot;%d</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="n">sum</span>
-</pre></div></div>
-<div id="perl" class="col s12 "><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/perl</span>
-
-<span class="k">sub</span> <span class="nf">SumDivisible</span> <span class="p">{</span>
-  <span class="nv">$p</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nv">$_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="nv">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-  <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nv">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nv">$p</span> <span class="o">*</span><span class="p">(</span> <span class="nv">$p</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="nv">$max</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@ARGV</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-  <span class="nv">$max</span><span class="o">=</span><span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nv">$sum</span> <span class="o">=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nv">$max</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nv">$max</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="nv">$max</span><span class="p">);</span>
-<span class="nb">printf</span> <span class="nv">$sum</span><span class="p">;</span>
-</pre></div></div>
-<div id="python" class="col s12 "><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="k">def</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">n</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="mi">999</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">-</span> <span class="n">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</pre></div></div>
-<div id="r" class="col s12 "><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/Rscript</span>
-
-<span class="n">printf</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="kc">...</span><span class="p">)</span> <span class="nf">invisible</span><span class="p">(</span><span class="nf">print</span><span class="p">(</span><span class="nf">sprintf</span><span class="p">(</span><span class="kc">...</span><span class="p">)))</span>
-
-<span class="n">SumDivisible</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">max</span><span class="p">){</span>
-  <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">floor</span><span class="p">(</span><span class="n">max</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
-  <span class="nf">floor</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="m">1</span><span class="p">))</span> <span class="o">/</span> <span class="m">2</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="n">max</span> <span class="o">&lt;-</span> <span class="m">999</span>
-<span class="n">args</span> <span class="o">&lt;-</span> <span class="nf">commandArgs</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="nf">if </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">){</span>
-  <span class="n">max</span> <span class="o">&lt;-</span> <span class="nf">as.integer</span><span class="p">(</span><span class="n">args[1]</span><span class="p">)</span><span class="o">-</span> <span class="m">1</span>
-<span class="p">}</span>
-<span class="n">sum</span> <span class="o">&lt;-</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">+</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">-</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="m">15</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
-
-<span class="nf">printf</span><span class="p">(</span><span class="s">&quot;%i&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span>
-</pre></div></div>
-<div id="ruby" class="col s12 "><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/ruby -w</span>
-
-<span class="k">def</span> <span class="nf">SumDivisible</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
-  <span class="nb">p</span> <span class="o">=</span> <span class="n">max</span> <span class="o">/</span> <span class="n">n</span>
-  <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="nb">p</span> <span class="o">*</span> <span class="p">(</span><span class="nb">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="k">end</span>
-
-<span class="n">max</span> <span class="o">=</span> <span class="mi">999</span>
-<span class="k">if</span> <span class="no">ARGV</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">then</span>
-  <span class="n">max</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_i</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="k">end</span>
-<span class="n">sum</span> <span class="o">=</span> <span class="no">SumDivisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">+</span> <span class="no">SumDivisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span> <span class="o">-</span> <span class="no">SumDivisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
-<span class="nb">puts</span> <span class="n">sum</span><span class="o">.</span><span class="n">to_s</span><span class="p">;</span>
-</pre></div></div>
-<div id="rust" class="col s12 "><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">env</span><span class="p">;</span><span class="w"></span>
-
-<span class="k">fn</span> <span class="nf">sum_divisible</span><span class="p">(</span><span class="n">n</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">max</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">max</span>: <span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="mi">999</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">args</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span>::<span class="n">args</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_divisible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sum_divisible</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">sum_divisible</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
 </pre></div></div></div></p>
 <hr/>
 <div class="container">

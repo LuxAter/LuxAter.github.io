@@ -32,7 +32,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Largest product in a series</h1>
 <div>
       <a href=https://projecteuler.net/problem=8><img alt="https://img.shields.io/badge/Euler-8-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-8-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-0-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -43,6 +43,53 @@ product are <span><span class="MathJax_Preview">9 \times 9 \times 8 \times 9 = 5
 greatest product. What is the value of this product?</p>
 </blockquote>
 <h3>Solution</h3>
+<h3>Code</h3>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="cp">#define max(a, b)                                                              \</span>
+<span class="cp">  ({                                                                           \</span>
+<span class="cp">    __typeof__(a) _a = (a);                                                    \</span>
+<span class="cp">    __typeof__(b) _b = (b);                                                    \</span>
+<span class="cp">    _a &gt; _b ? _a : _b;                                                         \</span>
+<span class="cp">  })</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">number</span> <span class="o">=</span>
+      <span class="s">&quot;731671765313306249192251196744265747423553491949349698352031277450632623&quot;</span>
+      <span class="s">&quot;957831801698480186947885184385861560789112949495459501737958331952853208&quot;</span>
+      <span class="s">&quot;805511125406987471585238630507156932909632952274430435576689664895044524&quot;</span>
+      <span class="s">&quot;452316173185640309871112172238311362229893423380308135336276614282806444&quot;</span>
+      <span class="s">&quot;486645238749303589072962904915604407723907138105158593079608667017242712&quot;</span>
+      <span class="s">&quot;188399879790879227492190169972088809377665727333001053367881220235421809&quot;</span>
+      <span class="s">&quot;751254540594752243525849077116705560136048395864467063244157221553975369&quot;</span>
+      <span class="s">&quot;781797784617406495514929086256932197846862248283972241375657056057490261&quot;</span>
+      <span class="s">&quot;407972968652414535100474821663704844031998900088952434506585412275886668&quot;</span>
+      <span class="s">&quot;811642717147992444292823086346567481391912316282458617866458359124566529&quot;</span>
+      <span class="s">&quot;476545682848912883142607690042242190226710556263211111093705442175069416&quot;</span>
+      <span class="s">&quot;589604080719840385096245544436298123098787992724428490918884580156166097&quot;</span>
+      <span class="s">&quot;919133875499200524063689912560717606058861164671094050775410022569831552&quot;</span>
+      <span class="s">&quot;0005593572972571636269561882670428252483600823257530420752963450&quot;</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max_value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">current</span> <span class="o">*=</span> <span class="p">(</span><span class="n">number</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="n">current</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max_value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div></p>
 <hr/>
 <div class="container">
   <h3 class="header blue-text">Downloads</h3>
