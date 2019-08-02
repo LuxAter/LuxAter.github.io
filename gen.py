@@ -280,6 +280,10 @@ def generate(full_gen=False):
             shutil.rmtree(os.path.join('./docs', d))
         shutil.copytree(os.path.join('./templates/', d),
                         os.path.join('./docs', d))
+    if os.path.isdir('./favicon/'):
+        for f in os.listdir('./favicon'):
+            shutil.copyfile(os.path.join('./favicon', f),
+                            os.path.join('./docs', os.path.basename(f)))
 
 
 class MyHandler(FileSystemEventHandler):
