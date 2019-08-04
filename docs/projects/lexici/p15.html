@@ -49,7 +49,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Lattice paths</h1>
 <div>
       <a href=https://projecteuler.net/problem=15><img alt="https://img.shields.io/badge/Euler-15-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-15-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-3-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-3-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -61,7 +61,25 @@ How many such routes are there through a <span><span class="MathJax_Preview">20\
 </blockquote>
 <h3>Solution</h3>
 <h3>Code</h3>
-<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#ada" class="blue-text">Ada</a></li>
+<li class="tab"><a href="#cpp" class="blue-text">Cpp</a></li>
+<li class="tab"><a href="#fortran" class="blue-text">Fortran</a></li></ul></div><div id="ada" class="col s12 "><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+<span class="kn">with</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">P15</span> <span class="kr">is</span>
+  <span class="n">size</span> <span class="p">:</span> <span class="kt">Integer</span> <span class="p">:=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="n">result</span> <span class="p">:</span> <span class="kt">Long_Float</span> <span class="p">:=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="kr">begin</span>
+  <span class="kr">if</span> <span class="n">Argument_Count</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="kr">then</span>
+    <span class="n">size</span> <span class="p">:=</span> <span class="kt">Integer</span><span class="p">&#39;</span><span class="na">Value</span><span class="p">(</span><span class="n">Argument</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="kr">end</span> <span class="kr">if</span><span class="p">;</span>
+  <span class="kr">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="kr">reverse</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)..(</span><span class="n">size</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="kr">loop</span>
+    <span class="n">result</span> <span class="p">:=</span> <span class="n">result</span> <span class="o">*</span> <span class="p">(</span><span class="kt">Long_Float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="kt">Long_Float</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">size</span><span class="p">));</span>
+  <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
+  <span class="n">Put_Line</span><span class="p">(</span><span class="kt">Long_Integer</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">(</span><span class="kt">Long_Integer</span><span class="p">(</span><span class="n">result</span><span class="p">)));</span>
+<span class="kr">end</span> <span class="nf">P15</span><span class="p">;</span>
+</pre></div></div>
+<div id="cpp" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
@@ -78,6 +96,23 @@ How many such routes are there through a <span><span class="MathJax_Preview">20\
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div></div>
+<div id="fortran" class="col s12 "><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">p15</span>
+  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">grid</span> <span class="o">=</span> <span class="mi">20</span>
+  <span class="kt">real</span> <span class="kd">::</span> <span class="n">res</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nb">command_argument_count</span><span class="p">()</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">     call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+     <span class="k">read</span> <span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="n">grid</span> 
+  <span class="n">endif</span>
+
+  <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="p">(</span><span class="n">grid</span><span class="o">*</span><span class="mi">2</span><span class="p">),(</span><span class="n">grid</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">grid</span><span class="p">))</span>
+  <span class="n">enddo</span>
+  <span class="k">print</span> <span class="o">*</span><span class="p">,</span> <span class="n">int8</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="k">end program </span><span class="n">p15</span>
 </pre></div></div></div></p>
 <hr/>
 <div class="container">

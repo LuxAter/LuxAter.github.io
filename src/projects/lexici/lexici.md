@@ -26,7 +26,7 @@ how each language fairs against a variety of problems.
 ## Problems ##
 
 <div class="progress">
-      <div class="blue determinate" style="width: 5%"></div>
+      <div class="blue determinate" style="width: 10%"></div>
 </div>
 The list of currently implemented problems can be found [here](lexici/). Each
 problem has the definition of the problem from Project Euler, and an
@@ -37,11 +37,6 @@ written in ``C``.
 
 The currently implemented languages are the following
 
-|        |      |            |
-| ---    | ---  | ---        |
-| Ada    | Bash | C          |
-| C++    | C#   | Fortan     |
-| F#     | Go   | JavaScript |
-| Lisp   | Lua  | Perl       |
-| Python | R    | Ruby       |
-| Rust   |      |            |
+|     |     |
+|-----|-----|
+| Ada | C++ |

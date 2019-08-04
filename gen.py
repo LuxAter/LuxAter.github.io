@@ -25,7 +25,7 @@ CONFIG = {
     'FFMPEG': bool(shutil.which('ffmpeg')),
     'PYGMENTS': bool(shutil.which('pygmentize')),
     'IMAGEMAGICK': bool(shutil.which('convert')),
-    'TRANSCRIBE': True
+    'TRANSCRIBE': False
 }
 
 
@@ -235,6 +235,7 @@ def gen_tree_index(env, data, dest_dir, base_name):
         'subdir': True,
         **v['files'][k + '.md']
     } for k, v in data['dirs'].items() if k + '.md' in v['files']]
+    data['dest'] = dest
     data['entries'] = sorted(indexed, key=lambda x: x['index'],
                              reverse=False) + sorted(
                                  dated, key=lambda x: x['date'], reverse=True)

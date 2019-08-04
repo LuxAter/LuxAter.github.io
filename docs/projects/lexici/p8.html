@@ -49,7 +49,7 @@
     <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Largest product in a series</h1>
 <div>
       <a href=https://projecteuler.net/problem=8><img alt="https://img.shields.io/badge/Euler-8-brightgreen.svg?style=for-the-badge" src="https://img.shields.io/badge/Euler-8-brightgreen.svg?style=for-the-badge"></a>
-      <img alt="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-1-blueviolet.svg?style=for-the-badge">
+      <img alt="https://img.shields.io/badge/Languages-3-blueviolet.svg?style=for-the-badge" src="https://img.shields.io/badge/Languages-3-blueviolet.svg?style=for-the-badge">
 </div>
 <hr/>
 <blockquote>
@@ -61,7 +61,34 @@ greatest product. What is the value of this product?</p>
 </blockquote>
 <h3>Solution</h3>
 <h3>Code</h3>
-<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#c++" class="blue-text">C++</a></li></ul></div><div id="c++" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<p class="flow-text"><div class="row"><div class="col s12"><ul class="tabs"><li class="tab"><a href="#ada" class="blue-text">Ada</a></li>
+<li class="tab"><a href="#cpp" class="blue-text">Cpp</a></li>
+<li class="tab"><a href="#fortran" class="blue-text">Fortran</a></li></ul></div><div id="ada" class="col s12 "><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+<span class="kn">with</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span> <span class="kn">use</span> <span class="nn">Ada.Command_Line</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">P8</span> <span class="kr">is</span>
+  <span class="n">n</span><span class="p">:</span><span class="kt">Integer</span> <span class="p">:=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="n">number</span><span class="p">:</span><span class="kt">String</span><span class="p">:=</span> <span class="s">&quot;7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450&quot;</span><span class="p">;</span>
+  <span class="n">max_value</span><span class="p">:</span><span class="kt">Long_Integer</span> <span class="p">:=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">current</span><span class="p">:</span><span class="kt">Long_Integer</span> <span class="p">:=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kr">begin</span>
+  <span class="kr">if</span> <span class="n">Argument_Count</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="kr">then</span>
+    <span class="n">n</span> <span class="p">:=</span> <span class="kt">Integer</span><span class="p">&#39;</span><span class="na">Value</span><span class="p">(</span><span class="n">Argument</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+  <span class="kr">end</span> <span class="kr">if</span><span class="p">;</span>
+  <span class="kr">if</span> <span class="n">Argument_Count</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="kr">then</span>
+    <span class="n">number</span> <span class="p">:=</span> <span class="n">Argument</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="kr">end</span> <span class="kr">if</span><span class="p">;</span>
+  <span class="kr">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">1</span> <span class="p">..</span> <span class="p">(</span><span class="n">number</span><span class="p">&#39;</span><span class="na">Length</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span> <span class="kr">loop</span>
+    <span class="n">current</span> <span class="p">:=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kr">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span> <span class="p">..</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="kr">loop</span>
+      <span class="n">current</span> <span class="p">:=</span> <span class="n">current</span> <span class="o">*</span> <span class="kt">Long_Integer</span><span class="p">(</span><span class="kt">Integer</span><span class="p">(</span><span class="kt">Character</span><span class="p">&#39;</span><span class="na">Pos</span><span class="p">(</span><span class="n">number</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="o">-</span> <span class="mi">48</span><span class="p">));</span>
+    <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
+    <span class="n">max_value</span> <span class="p">:=</span> <span class="kt">Long_Integer</span><span class="p">&#39;</span><span class="na">Max</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="n">current</span><span class="p">);</span>
+  <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
+  <span class="n">Put_Line</span><span class="p">(</span><span class="kt">Long_Integer</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">(</span><span class="n">max_value</span><span class="p">));</span>
+<span class="kr">end</span> <span class="nf">p8</span><span class="p">;</span>
+</pre></div></div>
+<div id="cpp" class="col s12 "><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
@@ -106,6 +133,43 @@ greatest product. What is the value of this product?</p>
   <span class="p">}</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">max_value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div></div>
+<div id="fortran" class="col s12 "><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">p8</span>
+  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">13</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span> <span class="o">=</span> <span class="s2">&quot;7316717653133062491922511967442657474235534919&amp;</span>
+<span class="s2">    4934969835203127745063262395783180169848018694788518438586156078911294949545&amp;</span>
+<span class="s2">    9501737958331952853208805511125406987471585238630507156932909632952274430435&amp;</span>
+<span class="s2">    5766896648950445244523161731856403098711121722383113622298934233803081353362&amp;</span>
+<span class="s2">    7661428280644448664523874930358907296290491560440772390713810515859307960866&amp;</span>
+<span class="s2">    7017242712188399879790879227492190169972088809377665727333001053367881220235&amp;</span>
+<span class="s2">    4218097512545405947522435258490771167055601360483958644670632441572215539753&amp;</span>
+<span class="s2">    6978179778461740649551492908625693219784686224828397224137565705605749026140&amp;</span>
+<span class="s2">    7972968652414535100474821663704844031998900088952434506585412275886668811642&amp;</span>
+<span class="s2">    7171479924442928230863465674813919123162824586178664583591245665294765456828&amp;</span>
+<span class="s2">    4891288314260769004224219022671055626321111109370544217506941658960408071984&amp;</span>
+<span class="s2">    0385096245544436298123098787992724428490918884580156166097919133875499200524&amp;</span>
+<span class="s2">    0636899125607176060588611646710940507754100225698315520005593572972571636269&amp;</span>
+<span class="s2">    561882670428252483600823257530420752963450&quot;</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">max_value</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span>
+  <span class="k">if</span><span class="p">(</span><span class="nb">command_argument_count</span><span class="p">()</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="k">read</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">n</span>
+  <span class="n">endif</span>
+  <span class="k">if</span><span class="p">(</span><span class="nb">command_argument_count</span><span class="p">()</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+  <span class="n">endif</span>
+  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">do </span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">current</span> <span class="o">=</span> <span class="n">current</span> <span class="o">*</span> <span class="p">(</span><span class="nb">iachar</span><span class="p">(</span><span class="n">val</span><span class="p">(</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="p">))</span><span class="o">-</span><span class="mi">48</span><span class="p">)</span>
+    <span class="n">enddo</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span>
+  <span class="n">enddo</span>
+  <span class="k">print</span> <span class="o">*</span><span class="p">,</span><span class="n">max_value</span>
+<span class="n">endprogram</span>
 </pre></div></div></div></p>
 <hr/>
 <div class="container">
