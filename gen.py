@@ -100,7 +100,7 @@ def gen_config():
             continue
         if file.endswith('.md'):
             config['tabs'][file[:-3].title()] = file[:-3] + '.html'
-        else:
+        elif not file.endswith('.jpg'):
             config['tabs'][
                 file.title()] = file + '/' if file + '.md' not in os.listdir(
                     './src/' + file) else file + '/' + file + '.html'

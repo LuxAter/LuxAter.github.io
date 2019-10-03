@@ -1,6 +1,6 @@
 ---
 title: Lexici
-url: https://github.com/LuxAtrumStudio/lexici
+url: https://github.com/LuxAter/lexici
 ---
 
 Lexici is a collection of problems implemented in a variety of different
@@ -28,10 +28,9 @@ how each language fairs against a variety of problems.
 <div class="progress">
       <div class="blue determinate" style="width: 10%"></div>
 </div>
-The list of currently implemented problems can be found [here](lexici/). Each
-problem has the definition of the problem from Project Euler, and an
-explination of the solution. The explination is suplemented with the solution
-written in ``C``.
+The problems which have currently been implemented can be viewed along with
+their implementation [here](lexici/).  Each problem has the definition of the
+problem from Project Euler, and an explination of the solution.
 
 ## Languages ##
 

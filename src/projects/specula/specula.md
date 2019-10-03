@@ -1,14 +1,17 @@
 ---
 title: Specula
-url: https://github.com/LuxAtrumStudio/specula
+url: https://github.com/LuxAter/specula
 img: specula_1.png
 downloads:
-  Github: https://github.com/LuxAtrumStudio/Specula/archive/development.zip
+  Github: https://github.com/LuxAter/Specula/archive/development.zip
 ---
 
 This ray tracer implements the basis of a ray tracing rendering engine in C++.
 It is possible to render still images, or sequences of images. Multi threading
 has also been implemented allowing for significantly faster render times.
+
+**Note:** The Specula library is currently being rewritten to utilize
+pathtracing, and to become a physicaly based renderer.
 
 The ability to create multiple object of *sphere*, *triangle*, *plane*,
 *circle*, or *mesh* types is currently available. Where a mesh is any

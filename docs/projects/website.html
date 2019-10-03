@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Arden Rasmussen</title>
+    <title>Personal Website - Projects - Arden Rasmussen</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -41,14 +41,37 @@
         </div>
         <div class="nav-content blue lighten-1">
           <ul class="mtabs mtabs-transparent">
-                <li class="mtab"><a href="/projects/">Projects</a></li>
+                <li class="mtab"><a href="/projects/" class="active">Projects</a></li>
           </ul>
         </div>
       </nav>
     </header>
-    <main id="content" class="container" style="padding-bottom:25px"><p class="flow-text"><img alt="Self" class="responsive-img materialboxed center-align" src="/ArdenRasmussen.jpg" style="width:250px;height:250px;" /></p>
-<p class="flow-text"><em>Arden Rasmussen</em> is an undergraduate student at Lewis &amp; Clark College.
-Majoring in Mathematics &amp; Computer Science, and Physics.</p>
+    <main id="content" class="container" style="padding-bottom:25px"><h1 class="header blue-text">Personal Website</h1>
+<div>
+      <a href=https://github.com/LuxAter/LuxAter.github.io><img alt="https://img.shields.io/badge/Github-Personal Website-blue.svg?style=for-the-badge&logo=github" src="https://img.shields.io/badge/Github-Personal Website-blue.svg?style=for-the-badge&logo=github"></a>
+</div>
+<hr/>
+<p class="flow-text">This personal website, is generated using a static site generator that I have
+developed. The static site generator is written in python, and uses yaml files
+for the configuration, and markdown files for all of the content.</p>
+<p class="flow-text">The basic file structure can be seen in the repository for this website. In
+general, in the root directory, there is the templates, which define the look
+for each of the webpages. and the generator script. All of the other content is
+located in the <code>src/</code> directory.</p>
+<p class="flow-text">Each file or folder in the <code>src/</code> directory will create a new tab in the
+navigation bar. Then if it is a directory, it will automatically generate a
+page containing cards for each subdirectory or file. Each card will contain the
+first paragraph of the content for that file. This structure is recursive, so
+any level of subdirectories can be created, and the generated website will
+generate the neccesary index files to brows all of the files.</p>
+<p class="flow-text">The markdown is rendered using the python package <code>markdown</code>, and uses
+<code>jinja2</code> files for the html templates. The rendering can handle most markdown
+components, and can also render mathmatical formuala using mathjax.</p>
+<p class="flow-text">When generating the static site, the generator script will make use of
+<code>ffmpeg</code> if it is available, to convert any images and video files into
+multiple different file formats, to improve the compatability across multiple
+devices. This along with the Materialize css framework that is used allows the
+website to be easily viewed any any device that is used.</p>
 </main>
     <footer class="page-footer blue">
       <div class="footer-copyright">

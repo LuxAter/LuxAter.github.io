@@ -49,7 +49,7 @@ class ImageVideoInlineProcessor(markdown.inlinepatterns.LinkInlineProcessor):
             el.set('class', self.ext.config['image-class'])
             el.set("src", src)
             if title is not None:
-                el.set("title", title)
+                el.set("style", title)
             el.set("alt", self.unescape(text))
         return el, m.start(0), index
 
