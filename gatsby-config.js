@@ -28,6 +28,17 @@ module.exports = {
             resolve: `gatsby-remark-autolink-headers`,
             options: {}
           },
+          { 
+            resolve: `gatsby-remark-custom-blocks`,
+            options: {
+              blocks: {
+                note: {
+                  classes: "note",
+                  title: "optional",
+                }
+              }
+            }
+          },
           {
             resolve: `gatsby-remark-katex`,
             options: {}

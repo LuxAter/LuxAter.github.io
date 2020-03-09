@@ -15,7 +15,7 @@ tracer, and even provides an easy to use scene definition file.
 
 #### Efficiency
 
-By chaning specific key configuration values in a rendered image, it is
+By changing specific key configuration values in a rendered image, it is
 possible to significantly alter the quality of the image, in direct relation to
 the runtime of the program. However some settings will produce a better output
 image, for less cost to runtime. The main two settings that we consider here,
@@ -24,6 +24,14 @@ that we are rendering twice as many images, and combining the images after the
 fact. While doubling the resolution is equivalent to rendering four times the
 number of images, and connecting the images as the four quadrants of the output
 image.
+
+After collecting the data it is clear that doubling the resolution in both axis
+is indeed about equivalent to four times the samples per pixel. However,
+increasing the resolution produces a visually shaper images, even with very few
+samples.
+
+[[note]]
+| More quantitative data is still being determined.
 
 #### Configuration
 
@@ -55,7 +63,7 @@ like so:
 These are general settings for the render, they control how the renderer will
 function, and the quality of the produced image. Changing these values will
 significantly impact the runtime of the renderer. The amount that each value
-effects the runtime is described in the secion on [Efficiency](#efficiency).
+effects the runtime is described in the section on [Efficiency](#efficiency).
 
 | Value           | Description                                                                             |
 |-----------------|-----------------------------------------------------------------------------------------|

@@ -13,7 +13,7 @@ export default () => (
         <Column width="five">
           <em>Arden Rasmussen</em> is currently an Undergraduate student at
           Lewis and Clark College, majoring in Mathematics & Computer
-          Science, with a sceond major in Physics.
+          Science, with a second major in Physics.
         </Column>
         <Column width="five">
         </Column>

@@ -33,3 +33,17 @@ exports.createPages = async ({actions, graphql, reporter }) => {
         })
     }) 
 }
+// exports.onCreateWebpackConfig = ({stage, loaders, actions }) => {
+  // if(state == `build-html`) {
+    // actions.setWebpackConfig({
+      // module: {
+        // rules: [
+          // {
+            // rest: /plotly/,
+            // use: loaders.null(),
+          // },
+        // ],
+      // },
+    // });
+  // }
+// }

@@ -1,10 +1,20 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { FaGithub } from 'react-icons/fa';
+// import rehypeReact from "rehype-react"
 
 import Layout from "../layouts/index"
 import { Breadcrumb } from "../components/typeogrophy"
 import { Row, Column} from "../components/grid"
+// import { Plotly, LazyPlot } from "../components/plotly"
+
+// const renderAst = new rehypeReact({
+  // createElement: React.createElement,
+  // components: {
+    // "lazyplot": LazyPlot,
+    // "plotly": Plotly,
+  // }
+// }).Compiler;
 
 export default function Template({data,}) {
     const { markdownRemark } = data
@@ -24,7 +34,7 @@ export default function Template({data,}) {
     })}</ul> : <ul></ul>}
                 </Column>
             </Row>
-            <div dangerouslySetInnerHTML={{__html: html}}/>
+            <div dangerouslySetInnerHTML={{__html: html}} />
         </Layout>
     )
 }
