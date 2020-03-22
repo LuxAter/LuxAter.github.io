@@ -15,6 +15,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-favicon`,
       options: {
         logo: "./src/favicon.png"
@@ -34,6 +41,18 @@ module.exports = {
               blocks: {
                 note: {
                   classes: "note",
+                  title: "optional",
+                },
+                info: {
+                  classes: "info",
+                  title: "optional",
+                },
+                warn: {
+                  classes: "warning",
+                  title: "optional",
+                },
+                err: {
+                  classes: "error",
                   title: "optional",
                 }
               }
