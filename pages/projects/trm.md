@@ -68,7 +68,7 @@ effects the runtime is described in the section on [Efficiency](#efficiency).
 | Value           | Description                                                                             |
 |-----------------|-----------------------------------------------------------------------------------------|
 | `spp`           | The number of samples per pixel. Higher values will result in better looking images.    |
-| `maxiumumDepth` | The number of bounces that the simulation will simulate before rays begin to terminate. |
+| `maximumDepth`  | The number of bounces that the simulation will simulate before rays begin to terminate. |
 | `resolution`    | The width and height of the output image.                                               |
 | `camera`        | Information about the camera object in the scene.                                       |
 | `camera.fov`    | The field of view for the camera given in radians.                                      |
